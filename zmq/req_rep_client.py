@@ -2,12 +2,13 @@ import zmq
 
 context = zmq.Context()
 
-print("Connecting to the server...")
 socket = context.socket(zmq.REQ)
+print("Connecting to the server...")
 socket.connect("tcp://localhost:5555")
 
-for request in range(10):
-    socket.send(b"Hello")
+while True:
+    message = input("> ")
+    socket.send_string(message)
 
-    message = socket.recv()
-    print("received reply: ", str(message))
+    message = socket.recv_string()
+    print("received reply: ", message)

@@ -6,10 +6,8 @@ socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
 
 while True:
+    message = socket.recv_string()
+    print("received: ", message)
 
-    message = socket.recv()
-    print("received: ", str(message))
-
-    time.sleep(1)
-
-    socket.send(b"Hi!")
+    messageToSend = input("> ")
+    socket.send_string(messageToSend)
