@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "2_/proto";
+
+service ServerStreaming {
+    rpc GetServerResponse(Number) returns (stream Message) {}
+}
+
+message Message {
+    string message = 1;
+}
+
+message Number {
+    int32 value = 1;
+}
